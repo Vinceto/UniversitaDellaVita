@@ -14,4 +14,8 @@ public class CursoService {
     public List<Curso> obtenerCursosPorEspecialidad(Long especialidadId) {
         return cursoRepository.findByEspecialidadEspecialidadId(especialidadId);
     }
+
+    public Object obtenerCursos() {
+        return cursoRepository.findAll();
+    }
 }

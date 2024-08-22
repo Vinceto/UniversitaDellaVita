@@ -8,4 +8,12 @@ import java.util.List;
 @Repository
 public interface EvaluacionAlumnoCursoRepository extends JpaRepository<EvaluacionAlumnoCurso, Long> {
     List<EvaluacionAlumnoCurso> findByAlumnoCursoAlumnoAlumnoIdAndAlumnoCursoCursoCursoId(Long alumnoId, Long cursoId);
+    // Buscar alumnos por especialidad y curso
+    List<EvaluacionAlumnoCurso> findByAlumnoCursoCursoEspecialidadEspecialidadIdAndAlumnoCursoCursoCursoId(Long especialidadId, Long cursoId);
+
+    // Buscar alumnos por especialidad
+    List<EvaluacionAlumnoCurso> findByAlumnoCursoCursoEspecialidadEspecialidadId(Long especialidadId);
+
+    // Buscar alumnos por curso
+    List<EvaluacionAlumnoCurso> findByAlumnoCursoCursoCursoId(Long cursoId);
 }

@@ -4,26 +4,69 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-<div class="container">
-    <h1>Lista de Cursos</h1>
-    <table class="table table-striped">
-        <thead>
+<div class="container mt-4">
+    <h1 class="text-center">Consulta de Alumnos</h1>
+    <form th:action="@{/cursos}" method="get" class="row g-3 mb-4">
+        <div class="col-md-5">
+            <label for="especialidad" class="form-label">Especialidad</label>
+            <select id="especialidad" name="especialidad" class="form-select" required>
+                <option value="" disabled selected>Seleccione una especialidad</option>
+                <option th:each="especialidad : ${especialidades}" th:value="${especialidad.especialidadId}" th:text="${especialidad.especialidadDescripcion}"></option>
+            </select>
+        </div>
+        <div class="col-md-5">
+            <label for="curso" class="form-label">Curso</label>
+            <select id="curso" name="curso" class="form-select" required>
+                <option value="" disabled selected>Seleccione un curso</option>
+                <option th:each="curso : ${cursos}" th:value="${curso.cursoId}" th:text="${curso.cursoDescripcion}"></option>
+            </select>
+        </div>
+        <div class="col-md-2 d-flex align-items-end">
+            <button type="submit" class="btn btn-primary w-100">Buscar</button>
+        </div>
+    </form>
+
+    <table class="table table-striped table-hover">
+        <thead class="table-dark">
         <tr>
-            <th>ID</th>
-            <th>Descripción</th>
-            <th>Especialidad</th>
-            <th>Profesor</th>
+            <th>#</th>
+            <th>Nombre</th>
+            <th>Apellidos</th>
+            <th>Email</th>
+            <th>Curso</th>
+            <th>Promedio</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="curso : ${cursos}">
-            <td th:text="${curso.cursoId}"></td>
-            <td th:text="${curso.cursoDescripcion}"></td>
-            <td th:text="${curso.especialidad.especialidadDescripcion}"></td>
-            <td th:text="${curso.profesor.profesorNombre + ' ' + curso.profesor.profesorApellido}"></td>
+        <tr th:each="alumno, iterStat : ${alumnos}">
+            <td th:text="${iterStat.index + 1}"></td>
+            <td th:text="${alumno.nombre}"></td>
+            <td th:text="${alumno.apellidos}"></td>
+            <td th:text="${alumno.email}"></td>
+            <td th:text="${alumno.curso.descripcion}"></td>
+            <td th:text="${alumno.promedio}"></td>
         </tr>
         </tbody>
     </table>
+
+    <!-- Paginador -->
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+            <div th:if="${page != null}">
+                <<li class="page-item" th:classappend="${pageable.hasPrevious()} ? 'disabled' : ''">
+                <a class="page-link" th:href="@{/alumnos(page=${pageable.previousPageNumber}, size=${pageable.pageSize}, sort=${sort})}">Anterior</a>
+            </li>
+                <li th:each="pageNum : ${#numbers.sequence(0, pageable.totalPages - 1)}"
+                    th:classappend="${pageNum == pageable.pageNumber} ? 'active'">
+                    <a class="page-link" th:href="@{/alumnos(page=${pageNum}, size=${pageable.pageSize}, sort=${sort})}" th:text="${pageNum + 1}"></a>
+                </li>
+                <li class="page-item" th:classappend="${!pageable.hasNext()} ? 'disabled' : ''">
+                    <a class="page-link" th:href="@{/alumnos(page=${pageable.nextPageNumber}, size=${pageable.pageSize}, sort=${sort})}">Siguiente</a>
+                </li>
+            </div>
+
+        </ul>
+    </nav>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
