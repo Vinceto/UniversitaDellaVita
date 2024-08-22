@@ -1,5 +1,4 @@
 package praxis.cert.universitadellavita.Entities;
-
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;

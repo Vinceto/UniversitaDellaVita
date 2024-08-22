@@ -1,5 +1,4 @@
 package praxis.cert.universitadellavita.Entities;
-
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,7 +17,6 @@ public class Profesor {
     private Long profesorId;
 
     private String profesorNombre;
-    private String profesorApellido;
     private String profesorEmail;
 
     @OneToMany(mappedBy = "profesor")

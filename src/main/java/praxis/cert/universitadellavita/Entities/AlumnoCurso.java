@@ -26,5 +26,8 @@ public class AlumnoCurso {
     private Curso curso;
 
     @OneToMany(mappedBy = "alumnoCurso")
+    private List<EvaluacionAlumnoCurso> evaluaciones;
+
+    @OneToMany(mappedBy = "alumnoCurso")
     private List<AsistenciaAlumnoCurso> asistencias;
 }

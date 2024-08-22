@@ -1,5 +1,4 @@
 package praxis.cert.universitadellavita.Entities;
-
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,21 +14,13 @@ import java.util.List;
 public class Alumno {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long alumnoCursoId;
+    @Column(name = "alumno_id")
+    private Long alumnoId;
 
-    @ManyToOne
-    @JoinColumn(name = "alumno_id")
-    private Alumno alumno;
+    private String alumnoNombre;
+    private String alumnoApellido;
+    private String alumnoEmail;
 
-    @ManyToOne
-    @JoinColumn(name = "curso_id")
-    private Curso curso;
-
-    @OneToMany(mappedBy = "alumnoCurso")
-    private List<AsistenciaAlumnoCurso> asistencias;
     @OneToMany(mappedBy = "alumno")
-    private List<Asistencia> asistencias;
-
-    @OneToMany(mappedBy = "alumnoCurso")
-    private List<EvaluacionAlumnoCurso> evaluaciones;
+    private List<AlumnoCurso> cursos;
 }

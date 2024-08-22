@@ -1,5 +1,4 @@
 package praxis.cert.universitadellavita.Entities;
-
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -23,10 +22,10 @@ public class Curso {
     @JoinColumn(name = "especialidad_id")
     private Especialidad especialidad;
 
-    @OneToMany(mappedBy = "curso")
-    private List<AlumnoCurso> alumnos;
-
     @ManyToOne
     @JoinColumn(name = "profesor_id")
     private Profesor profesor;
+
+    @OneToMany(mappedBy = "curso")
+    private List<AlumnoCurso> alumnos;
 }

@@ -1,10 +1,8 @@
 package praxis.cert.universitadellavita.Entities;
-
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import java.util.List;
 
 @Entity
@@ -19,6 +17,6 @@ public class Especialidad {
 
     private String especialidadDescripcion;
 
-    @OneToMany(mappedBy = "especialidad")
+    @OneToMany(mappedBy = "especialidad")  // Relación con Curso
     private List<Curso> cursos;
 }
