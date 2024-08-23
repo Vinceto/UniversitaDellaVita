@@ -16,4 +16,6 @@ public interface EvaluacionAlumnoCursoRepository extends JpaRepository<Evaluacio
 
     // Buscar alumnos por curso
     List<EvaluacionAlumnoCurso> findByAlumnoCursoCursoCursoId(Long cursoId);
+
+    List<EvaluacionAlumnoCurso> findByAlumnoCurso_CursoId(Long cursoId);
 }

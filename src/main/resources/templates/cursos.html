@@ -40,11 +40,11 @@
         <tbody>
         <tr th:each="alumno, iterStat : ${alumnos}">
             <td th:text="${iterStat.index + 1}"></td>
-            <td th:text="${alumno.nombre}"></td>
-            <td th:text="${alumno.apellidos}"></td>
-            <td th:text="${alumno.email}"></td>
-            <td th:text="${alumno.curso.descripcion}"></td>
-            <td th:text="${alumno.promedio}"></td>
+            <td th:text="${alumno.alumnoNombre}"></td>
+            <td th:text="${alumno.alumnoApellido}"></td>
+            <td th:text="${alumno.alumnoEmail}"></td>
+            <td th:text="${alumno.cursoDescripcion}"></td>
+            <td th:text="${alumno.promedioNotas}"></td>
         </tr>
         </tbody>
     </table>

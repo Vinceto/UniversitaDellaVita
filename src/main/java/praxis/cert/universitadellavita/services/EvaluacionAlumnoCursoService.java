@@ -28,4 +28,22 @@ public class EvaluacionAlumnoCursoService {
     public List<EvaluacionAlumnoCurso> obtenerTodosLosAlumnos() {
         return evaluacionAlumnoCursoRepository.findAll();
     }
+
+    public Double obtenerPromedioNotas(Long alumnoCursoId) {
+        // Buscar todas las evaluaciones del alumno
+        List<EvaluacionAlumnoCurso> evaluaciones = evaluacionAlumnoCursoRepository.findByAlumnoCurso_CursoId(alumnoCursoId);
+
+        // Verificar si el alumno tiene evaluaciones
+        if (evaluaciones.isEmpty()) {
+            return 0.0;  // Retorna 0.0 si no tiene evaluaciones
+        }
+
+        // Sumar todas las notas
+        double sumaNotas = evaluaciones.stream()
+                .mapToDouble(EvaluacionAlumnoCurso::getNota)
+                .sum();
+
+        // Calcular el promedio
+        return sumaNotas / evaluaciones.size();
+    }
 }
